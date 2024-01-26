@@ -1,6 +1,9 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework import viewsets
 from rest_framework import status
+
+from collections import Counter
 
 import asyncio
 
@@ -8,6 +11,8 @@ import json
 
 from .scrapers import ScraperUtil
 from .validators import URLQueryStringParameterValidator
+
+from django_celery_example.celery import run_scraper_with_all_params_task
 
 class ScraperViewSet(APIView):
     def get(self, request):
@@ -171,7 +176,13 @@ class ScraperViewSet(APIView):
                                                                  detailDOUJournalFlag : bool,
                                                                  balancerFlag : bool):
         
-        response = ScraperUtil.run_scraper_with_all_params(secaoURLQueryString, dataURLQueryString, detailDOUJournalFlag, balancerFlag)
+        # response = ScraperUtil.run_scraper_with_all_params(secaoURLQueryString, dataURLQueryString, detailDOUJournalFlag, balancerFlag)
 
-        return self.handle_response(response)
-    
+        result_future_with_celery = run_scraper_with_all_params_task.delay(secaoURLQueryString, dataURLQueryString, detailDOUJournalFlag, balancerFlag)
+
+        while not result_future_with_celery.ready():
+
+            print("Tarefa sendo processada nos wrokers...")            
+
+        result = result_future_with_celery.get()
+        return self.handle_response(result)

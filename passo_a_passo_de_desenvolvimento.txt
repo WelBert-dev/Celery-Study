@@ -125,8 +125,61 @@ $ docker-compose exec web python3 manage.py createsuperuser
 
 ------------------------------------------------------------------------------------------------------------------------------
 
+02 - Testando a execução do ScraperUtil.run_scraper_with_all_params no Celery utilizando a chamada no Endpoint:
 
 
 
+	- GET http://127.0.0.1:8010/trigger_web_scraping_dou_api/?secao=do1&data=26-01-2024&saveInDBFlag=True
 
+
+
+COM O NOVO HANDLE:
+
+
+
+	# Varre os DOU da seção e data mencionada no query string param
+	# - GET http://127.0.0.1:8000/trigger_web_scraping_dou_api/?secao=`do1 | do2 | do3`&data=`DD-MM-AAAA`
+	# E Detalha cada jornal
+	def handle_balancer_secaoURLQueryString_and_dataURLQueryString_params(self, secaoURLQueryString : str, 
+		                                                 dataURLQueryString : str, 
+		                                                 detailDOUJournalFlag : bool,
+		                                                 balancerFlag : bool):
+
+
+	result_future_with_celery = run_scraper_with_all_params_task.delay("do1", "26-01-2024", False, False)
+
+	while not result_future_with_celery.ready():
+
+	    print("Tarefa sendo processada nos wrokers...")            
+
+	result = result_future_with_celery.get()
+	return self.handle_response(result)
+
+
+
+METRICAS: 
+
+
+
+	Tempo de CPU do usuário 	919.609 ms
+	Tempo de CPU do sistema 	157.802 ms
+	Tempo total de CPU 		1077.411 ms
+	Tempo decorrido 		1336.657 ms
+	Mudanças de contexto 		2558 voluntário, 3325 involuntário
+
+
+
+	- GET http://127.0.0.1:8010/trigger_web_scraping_dou_api/?secao=do1&data=26-01-2024&detailDOUJournalFlag=True&saveInDBFlag=True	
+	
+	
+	
+METRICAS: 		
+				
+			
+	
+	Tempo de CPU do usuário 	23676.521 ms
+	Tempo de CPU do sistema 	8435.092 ms
+	Tempo total de CPU 		32111.613 ms
+	Tempo decorrido 		50847.239 ms
+	Mudanças de contexto 		46645 voluntário, 216149 involuntário
 
