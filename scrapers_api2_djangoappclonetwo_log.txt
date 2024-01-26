@@ -1,0 +1,7 @@
+2024-01-26 17:42:48,988 - django.utils.autoreload - INFO - /app/polls/scrapers.py changed, reloading.
+2024-01-26 19:01:39,168 - django.utils.autoreload - INFO - /app/django_celery_example/settings.py changed, reloading.
+2024-01-26 19:12:42,768 - django.utils.autoreload - INFO - /app/django_celery_example/celery.py changed, reloading.
+2024-01-26 19:13:06,722 - django.utils.autoreload - INFO - /app/django_celery_example/celery.py changed, reloading.
+2024-01-26 19:13:37,973 - django.utils.autoreload - INFO - /app/django_celery_example/celery.py changed, reloading.
+2024-01-26 19:14:48,182 - django.utils.autoreload - INFO - /app/django_celery_example/celery.py changed, reloading.
+2024-01-26 19:16:09,857 - django.utils.autoreload - INFO - /app/django_celery_example/celery.py changed, reloading.

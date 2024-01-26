@@ -1,0 +1,41 @@
+
+$ docker-compose build
+
+$ docker-compose up
+
+$ docker-compose exec web python manage.py shell
+
+	>>> from django_celery_example.celery import divide
+	>>> divide.delay(1, 2)
+	<AsyncResult: 60f9c580-bccb-4ecd-819d-a47268b79844>
+
+
+$ docker-compose logs celery_worker
+
+	[...]
+	
+	celery_worker_1  | [2024-01-26 17:28:19,794: INFO/MainProcess] Events of group {task} enabled by remote.
+	celery_worker_1  | [2024-01-26 17:31:22,364: INFO/MainProcess] Task django_celery_example.celery.divide[60f9c580-bccb-4ecd-819d-a47268b79844] received
+	celery_worker_1  | [2024-01-26 17:31:27,381: INFO/ForkPoolWorker-4] Task django_celery_example.celery.divide[60f9c580-bccb-4ecd-819d-a47268b79844] succeeded in 5.014272162996349s: 0.
+	
+
+$ docker-compose exec redis sh
+$ /data # redis-cli
+$ MGET celery-task-meta-60f9c580-bccb-4ecd-819d-a47268b79844     <------- ID PEGO EM CIMA, PELOS LOGS DO WORKER
+
+
+
+http://0.0.0.0:5557/tasks                                        <------- Monitor Flower
+
+http://0.0.0.0:8010                                              <------- Aplicação web django
+
+
+
+$ python manage.py createsuperuser
+
+
+http://0.0.0.0:8010/admin                                        <-------- Para acessar o dash do backend do celery
+
+
+
+
