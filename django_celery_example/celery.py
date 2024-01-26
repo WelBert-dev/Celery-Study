@@ -7,6 +7,8 @@ from celery import Celery
 
 from django.conf import settings
 
+from polls.scrapers import ScraperUtil
+
 # this code copied from manage.py
 # set the default Django settings module for the 'celery' app.
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django_celery_example.settings')
@@ -27,3 +29,18 @@ def divide(x, y):
     import time
     time.sleep(5)
     return x / y
+
+
+@app.task
+def run_scraper_with_all_params_task(secao : str, 
+                                data : str, 
+                                detailDOUJournalFlag : bool, 
+                                balancerFlag : bool):
+    
+    
+    return ScraperUtil.run_scraper_with_all_params(secaoURLQueryString_param=secao, 
+                                            dataURLQueryString_param=data,
+                                            detailDOUJournalFlag=detailDOUJournalFlag,
+                                            balancerFlag=balancerFlag)
+
+    

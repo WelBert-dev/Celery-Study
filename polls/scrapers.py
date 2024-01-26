@@ -12,7 +12,7 @@ from curl_cffi.requests import AsyncSession
 
 from tenacity import retry
 
-from concurrent.futures import ProcessPoolExecutor
+from concurrent.futures import ThreadPoolExecutor
 
 log_path = os.path.join(os.environ.get('LOG_DIR', '.'), 'scrapers_api2_djangoappclonetwo_log.txt')
 
@@ -109,7 +109,7 @@ class ScraperUtil:
             
             # Para processamentos em paralelo: ProcessPoolExecutor:
             # Para requisições network em paralelo ele é ruim, o melhor é o ThreadPoolExecutor
-            with ProcessPoolExecutor() as executor:
+            with ThreadPoolExecutor() as executor:
                 
                 result = list(executor.map(ScraperUtil.run_beautifulSoup_into_dontDetailsPage, [response]))
         

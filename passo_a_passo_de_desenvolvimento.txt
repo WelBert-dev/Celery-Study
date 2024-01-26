@@ -3,7 +3,7 @@ $ docker-compose build
 
 $ docker-compose up
 
-$ docker-compose exec web python manage.py shell
+$ docker-compose exec web python3 manage.py shell
 
 	>>> from django_celery_example.celery import divide
 	>>> divide.delay(1, 2)
@@ -35,6 +35,97 @@ $ python manage.py createsuperuser
 
 
 http://0.0.0.0:8010/admin                                        <-------- Para acessar o dash do backend do celery
+
+
+
+------------------------------------------------------------------------------------------------------------------------------
+
+01 - Testando a execução do ScraperUtil.run_scraper_with_all_params no Celery:
+
+$ docker-compose exec web python3 manage.py shell
+
+	>>> from django_celery_example.celery import run_scraper_with_all_params
+	>>> run_scraper_with_all_params.delay(secao="do1", data="26-01-2024", detailDOUJournalFlag=False, balancerFlag=False)
+	<AsyncResult: 50b112a9-2a5f-45de-a22f-7aee416f38ed>
+
+
+$ docker-compose logs celery_worker
+
+	celery_worker_1  | [2024-01-26 19:41:39,179: INFO/MainProcess] Task django_celery_example.celery.run_scraper_with_all_params[fb1acf68-b2fe-428d-9e0a-60c009f981a5] received
+	celery_worker_1  | [2024-01-26 19:41:41,018: ERROR/ForkPoolWorker-4] Task django_celery_example.celery.run_scraper_with_all_params[fb1acf68-b2fe-428d-9e0a-60c009f981a5] raised unexpected: AssertionError('daemonic processes are not allowed to have children')
+	celery_worker_1  | Traceback (most recent call last):
+	celery_worker_1  |   File "/usr/local/lib/python3.11/dist-packages/celery/app/trace.py", line 477, in trace_task
+	celery_worker_1  |     R = retval = fun(*args, **kwargs)
+	celery_worker_1  |                  ^^^^^^^^^^^^^^^^^^^^
+	celery_worker_1  |   File "/usr/local/lib/python3.11/dist-packages/celery/app/trace.py", line 760, in __protected_call__
+	celery_worker_1  |     return self.run(*args, **kwargs)
+	celery_worker_1  |            ^^^^^^^^^^^^^^^^^^^^^^^^^
+	celery_worker_1  |   File "/app/django_celery_example/celery.py", line 41, in run_scraper_with_all_params
+	celery_worker_1  |     return ScraperUtil.run_scraper_with_all_params(secaoURLQueryString_param=secao,
+	celery_worker_1  |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	celery_worker_1  |   File "/app/polls/scrapers.py", line 50, in run_scraper_with_all_params
+	celery_worker_1  |     dou_dontDetails_list_with_jsonArrayField = ScraperUtil.run_dontDetailsPage_scraper(url_param)
+	celery_worker_1  |                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	celery_worker_1  |   File "/app/polls/scrapers.py", line 114, in run_dontDetailsPage_scraper
+	celery_worker_1  |     result = list(executor.map(ScraperUtil.run_beautifulSoup_into_dontDetailsPage, [response]))
+	celery_worker_1  |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	celery_worker_1  |   File "/usr/lib/python3.11/concurrent/futures/process.py", line 811, in map
+	celery_worker_1  |     results = super().map(partial(_process_chunk, fn),
+	celery_worker_1  |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	celery_worker_1  |   File "/usr/lib/python3.11/concurrent/futures/_base.py", line 608, in map
+	celery_worker_1  |     fs = [self.submit(fn, *args) for args in zip(*iterables)]
+	celery_worker_1  |          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	celery_worker_1  |   File "/usr/lib/python3.11/concurrent/futures/_base.py", line 608, in <listcomp>
+	celery_worker_1  |     fs = [self.submit(fn, *args) for args in zip(*iterables)]
+	celery_worker_1  |           ^^^^^^^^^^^^^^^^^^^^^^
+	celery_worker_1  |   File "/usr/lib/python3.11/concurrent/futures/process.py", line 783, in submit
+	celery_worker_1  |     self._start_executor_manager_thread()
+	celery_worker_1  |   File "/usr/lib/python3.11/concurrent/futures/process.py", line 722, in _start_executor_manager_thread
+	celery_worker_1  |     self._launch_processes()
+	celery_worker_1  |   File "/usr/lib/python3.11/concurrent/futures/process.py", line 749, in _launch_processes
+	celery_worker_1  |     self._spawn_process()
+	celery_worker_1  |   File "/usr/lib/python3.11/concurrent/futures/process.py", line 759, in _spawn_process
+	celery_worker_1  |     p.start()
+	celery_worker_1  |   File "/usr/lib/python3.11/multiprocessing/process.py", line 118, in start
+	celery_worker_1  |     assert not _current_process._config.get('daemon'), \
+	celery_worker_1  | AssertionError: daemonic processes are not allowed to have children
+
+
+
+Este erro é causado pois não é possivel executar `concurrent.futures.ProcessPoolExecutor` em um Daemon (Que é o caso dos workers do Celery), então a solução é trocar por `concurrent.futures.ThreadPoolExecutor`:
+
+
+$ docker-compose exec web python3 manage.py shell
+
+	>>> from django_celery_example.celery import run_scraper_with_all_params
+	>>> run_scraper_with_all_params.delay("do1", "26-01-2024", False, False)
+	<AsyncResult: 3a8a8e09-f0db-45e3-a209-0b9793d0aaa6>
+
+
+$ docker-compose logs celery_worker
+
+	[...]
+	
+	celery_worker_1  | [2024-01-26 19:48:56,298: INFO/MainProcess] Task django_celery_example.celery.run_scraper_with_all_params[3a8a8e09-f0db-45e3-a209-0b9793d0aaa6] received
+
+
+http://0.0.0.0:5557/task/3a8a8e09-f0db-45e3-a209-0b9793d0aaa6
+
+
+http://127.0.0.1:8010/admin/login/?next=/admin/
+
+
+$ docker-compose exec web python3 manage.py createsuperuser
+
+	Usuário (leave blank to use 'root'): root
+	Endereço de email: root@root.com
+	Password: root
+	Password (again): root
+
+
+------------------------------------------------------------------------------------------------------------------------------
+
+
 
 
 

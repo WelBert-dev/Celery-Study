@@ -5,3 +5,136 @@
 2024-01-26 19:13:37,973 - django.utils.autoreload - INFO - /app/django_celery_example/celery.py changed, reloading.
 2024-01-26 19:14:48,182 - django.utils.autoreload - INFO - /app/django_celery_example/celery.py changed, reloading.
 2024-01-26 19:16:09,857 - django.utils.autoreload - INFO - /app/django_celery_example/celery.py changed, reloading.
+2024-01-26 19:34:22,897 - django.utils.autoreload - INFO - /app/django_celery_example/celery.py changed, reloading.
+2024-01-26 19:34:26,905 - django.utils.autoreload - INFO - Watching for file changes with StatReloader
+2024-01-26 19:40:48,801 - django.utils.autoreload - INFO - /app/django_celery_example/celery.py changed, reloading.
+2024-01-26 19:40:49,873 - django.utils.autoreload - INFO - Watching for file changes with StatReloader
+2024-01-26 19:41:11,517 - django.utils.autoreload - INFO - Watching for file changes with StatReloader
+2024-01-26 19:41:15,237 - flower.command - INFO - Visit me at http://0.0.0.0:5555
+2024-01-26 19:41:15,244 - flower.command - INFO - Broker: redis://redis:6379/0
+2024-01-26 19:41:15,248 - flower.command - INFO - Registered tasks: 
+['celery.accumulate',
+ 'celery.backend_cleanup',
+ 'celery.chain',
+ 'celery.chord',
+ 'celery.chord_unlock',
+ 'celery.chunks',
+ 'celery.group',
+ 'celery.map',
+ 'celery.starmap',
+ 'django_celery_example.celery.divide',
+ 'django_celery_example.celery.run_scraper_with_all_params']
+2024-01-26 19:41:15,256 - kombu.mixins - INFO - Connected to redis://redis:6379/0
+2024-01-26 19:47:59,374 - django.utils.autoreload - INFO - /app/polls/scrapers.py changed, reloading.
+2024-01-26 19:48:01,693 - django.utils.autoreload - INFO - Watching for file changes with StatReloader
+2024-01-26 19:48:26,861 - django.utils.autoreload - INFO - Watching for file changes with StatReloader
+2024-01-26 19:48:29,723 - flower.command - INFO - Visit me at http://0.0.0.0:5555
+2024-01-26 19:48:29,729 - flower.command - INFO - Broker: redis://redis:6379/0
+2024-01-26 19:48:29,734 - flower.command - INFO - Registered tasks: 
+['celery.accumulate',
+ 'celery.backend_cleanup',
+ 'celery.chain',
+ 'celery.chord',
+ 'celery.chord_unlock',
+ 'celery.chunks',
+ 'celery.group',
+ 'celery.map',
+ 'celery.starmap',
+ 'django_celery_example.celery.divide',
+ 'django_celery_example.celery.run_scraper_with_all_params']
+2024-01-26 19:48:29,739 - kombu.mixins - INFO - Connected to redis://redis:6379/0
+2024-01-26 19:49:50,385 - django.security.DisallowedHost - ERROR - Invalid HTTP_HOST header: '0.0.0.0:8010'. You may need to add '0.0.0.0' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/dist-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+           ^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '0.0.0.0:8010'. You may need to add '0.0.0.0' to ALLOWED_HOSTS.
+2024-01-26 19:49:50,435 - django.request - WARNING - Bad Request: /admin
+2024-01-26 19:49:50,563 - django.security.DisallowedHost - ERROR - Invalid HTTP_HOST header: '0.0.0.0:8010'. You may need to add '0.0.0.0' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/dist-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+           ^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '0.0.0.0:8010'. You may need to add '0.0.0.0' to ALLOWED_HOSTS.
+2024-01-26 19:49:50,607 - django.request - WARNING - Bad Request: /favicon.ico
+2024-01-26 19:50:01,042 - django.security.DisallowedHost - ERROR - Invalid HTTP_HOST header: '0.0.0.0:8010'. You may need to add '0.0.0.0' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/dist-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+           ^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '0.0.0.0:8010'. You may need to add '0.0.0.0' to ALLOWED_HOSTS.
+2024-01-26 19:50:01,080 - django.request - WARNING - Bad Request: /admin
+2024-01-26 19:50:12,540 - django.request - WARNING - Not Found: /favicon.ico
+2024-01-26 19:53:44,586 - django.request - WARNING - Not Found: /favicon.ico
+2024-01-26 20:02:50,646 - django.utils.autoreload - INFO - /app/polls/views.py changed, reloading.
+2024-01-26 20:02:52,545 - django.utils.autoreload - INFO - Watching for file changes with StatReloader
+2024-01-26 20:05:19,002 - django.utils.autoreload - INFO - /app/polls/views.py changed, reloading.
+2024-01-26 20:05:20,447 - django.utils.autoreload - INFO - Watching for file changes with StatReloader
+2024-01-26 20:06:48,161 - django.utils.autoreload - INFO - /app/polls/views.py changed, reloading.
+2024-01-26 20:06:49,610 - django.utils.autoreload - INFO - Watching for file changes with StatReloader
+2024-01-26 20:07:43,566 - django.utils.autoreload - INFO - Watching for file changes with StatReloader
+2024-01-26 20:07:47,034 - flower.command - INFO - Visit me at http://0.0.0.0:5555
+2024-01-26 20:07:47,050 - flower.command - INFO - Broker: redis://redis:6379/0
+2024-01-26 20:07:47,064 - flower.command - INFO - Registered tasks: 
+['celery.accumulate',
+ 'celery.backend_cleanup',
+ 'celery.chain',
+ 'celery.chord',
+ 'celery.chord_unlock',
+ 'celery.chunks',
+ 'celery.group',
+ 'celery.map',
+ 'celery.starmap',
+ 'django_celery_example.celery.divide',
+ 'django_celery_example.celery.run_scraper_with_all_params_task']
+2024-01-26 20:07:47,097 - kombu.mixins - INFO - Connected to redis://redis:6379/0
+2024-01-26 20:09:08,543 - django.request - ERROR - Internal Server Error: /trigger_web_scraping_dou_api/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/dist-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/rest_framework/views.py", line 511, in dispatch
+    self.response = self.finalize_response(request, response, *args, **kwargs)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/rest_framework/views.py", line 423, in finalize_response
+    assert isinstance(response, HttpResponseBase), (
+AssertionError: Expected a `Response`, `HttpResponse` or `HttpStreamingResponse` to be returned from the view, but received a `<class 'NoneType'>`
+2024-01-26 20:09:08,781 - django.request - WARNING - Not Found: /favicon.ico
+2024-01-26 20:10:11,439 - django.utils.autoreload - INFO - /app/polls/views.py changed, reloading.
+2024-01-26 20:10:13,146 - django.utils.autoreload - INFO - Watching for file changes with StatReloader
+2024-01-26 20:10:20,451 - django.request - WARNING - Not Found: /favicon.ico
+2024-01-26 20:11:08,276 - django.utils.autoreload - INFO - /app/polls/views.py changed, reloading.
+2024-01-26 20:11:10,086 - django.utils.autoreload - INFO - Watching for file changes with StatReloader
