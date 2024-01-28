@@ -1,5 +1,5 @@
-from trigger_web_scraping_dou_api.models import JournalJsonArrayOfDOU
-from trigger_web_scraping_dou_api.models import DetailSingleJournalOfDOU
+from polls.models import JournalJsonArrayOfDOU
+from polls.models import DetailSingleJournalOfDOU
 
 from rest_framework import serializers
 

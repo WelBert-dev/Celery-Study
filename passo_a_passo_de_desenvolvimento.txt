@@ -182,4 +182,161 @@ METRICAS:
 	Tempo total de CPU 		32111.613 ms
 	Tempo decorrido 		50847.239 ms
 	Mudanças de contexto 		46645 voluntário, 216149 involuntário
+	
+	
+------------------------------------------------------------------------------------------------------------------------------
+
+03 - Testando a execução do GET ALL dos 3 DOUS com DETALHES no Celery:
+
+
+- GET http://127.0.0.1:8010/trigger_web_scraping_dou_api/?detailDOUJournalFlag=True&saveInDBFlag=True
+
+celery_worker_1  | [2024-01-26 20:56:37,974: INFO/MainProcess] Events of group {task} enabled by remote.
+celery_worker_1  | [2024-01-26 20:57:22,792: INFO/MainProcess] Task django_celery_example.celery.run_scraper_with_all_params_task[c3072ed7-9b21-4b1f-821b-cd67f5563498] received
+celery_worker_1  | [2024-01-26 20:57:22,802: INFO/MainProcess] Task django_celery_example.celery.run_scraper_with_all_params_task[82357003-d5b5-422c-a8c4-76eba4617f3d] received
+celery_worker_1  | [2024-01-26 20:57:22,811: INFO/MainProcess] Task django_celery_example.celery.run_scraper_with_all_params_task[8c78e85a-b245-484a-8711-6e1f42d783b8] received
+celery_worker_1  | [2024-01-26 20:57:24,519: INFO/ForkPoolWorker-4] Task django_celery_example.celery.run_scraper_with_all_params_task[c3072ed7-9b21-4b1f-821b-cd67f5563498] succeeded in 1.7227121050018468s: ['deliberacao-n-1.661-de-25-de-janeiro-de-2024-539826117', 'despacho-n-664/2023-539825237', 'despacho-de-24-de-janeiro-de-2024-539825156', 'despacho-sso-anp-n-96-de-25-de-janeiro-de-2024-539825746', 'portaria-sefic/minc-n-76-de-25-de-janeiro-de-2024-539825479', 'retificacao-539826198', 'resolucao-n-2-de-24-de-janeiro-de-2024-539826307', 'ato-n-515-de-22-de-janeiro-de-2024-539826226', 'portaria-n-268-de-25-de-janeiro-de-2024-539838266', 'resolucao-cefic-n-16-de-22-de-janeiro-de-2024-539842148', 'despacho-n-33/2024-539841145', 'despacho-n-4.652-de-29-de-novembro-de-2023-539841653', 'portaria-n-1.239-de-19-de-janeiro-de-2024-539841217', 'resolucao-autorizativa-n-15.074-de-23-de-janeiro-de-2024-539841811', 'portaria-sesai/ms-n-10-de-24-de-janeiro-de-2024-539841416', 'portaria-gpr-n-172-de-23-de-janeiro-de-2024-539845176', 'atos-de-24-de-janeiro-de-2024-539845599', 'despacho-n-124-de-23-de-janeiro-de-2024-539845497', 'resolucao-autorizativa-n-15.028-de-23-de-janeiro-de-2024-539845519', 'atos-declaratorios-cvm-de-25...', ...]
+celery_worker_1  | [2024-01-26 20:57:26,748: INFO/ForkPoolWorker-2] Task django_celery_example.celery.run_scraper_with_all_params_task[82357003-d5b5-422c-a8c4-76eba4617f3d] succeeded in 3.934733205001976s: ['portarias-de-25-de-janeiro-de-2024-539627076', 'ato-pr-n-61-de-23-de-janeiro-de-2024-539626740', 'despacho-539627530', 'portaria-de-pessoal-srrf07-n-52-de-23-de-janeiro-de-2024-539628525', 'despacho-539628688', 'portaria-ufcat-n-35-de-23-de-janeiro-de-2024-539629157', 'portaria-n-711-de-23-de-janeiro-de-2024-539628869', 'portaria-n-53-de-25-de-janeiro-de-2024-539633309', 'portaria-n-75-rtr/ufms-de-25-de-janeiro-de-2024-539633834', 'portaria-de-pessoal-memp-n-17-de-24-de-janeiro-de-2024-539633704', 'portaria-midr-n-384-de-25-de-janeiro-de-2024-539631563', 'portaria-de-pessoal-cggp/funai-n-20-de-24-de-janeiro-de-2024-539633467', 'despacho-de-24-de-janeiro-de-2024-539632011', 'portaria-c-ex-n-56-de-24-de-janeiro-de-2024-539636238', 'portaria-n-30/gr/unir-de-18-de-janeiro-de-2024-539637340', 'portaria-stj/gp-n-43-de-25-de-janeiro-de-2024-539638495', 'portaria-dgp/prf-n-154-de-23-de-janeiro-de-2024-539640338', 'portaria-de-pessoal-n-110-de-24-de-janeiro-de-2024-539641416', 'portaria-emcfa-md-n-478-de-25-de-janeir...', ...]
+web_1            | DETAILS OBJECT SENDO INSERIDO NO BANCO....
+celery_worker_1  | [2024-01-26 20:57:26,938: INFO/ForkPoolWorker-3] Task django_celery_example.celery.run_scraper_with_all_params_task[8c78e85a-b245-484a-8711-6e1f42d783b8] succeeded in 4.118371065997053s: ['aviso-de-licitacao-539673227', 'aviso-de-chamada-publica-n-1/2024-539673528', 'aviso-de-licitacao-539674126', 'aviso-de-licitacao-pregao-eletronico-n-5/2024-539672668', 'avisotomada-de-precos-n-2/2023-539672510', 'extrato-de-registro-de-precos-539672745', 'extrato-de-contrato-539673677', 'aviso-de-dispensa-de-licitacao-n-2/2024-539678083', 'extrato-de-contrato-539678723', 'aviso-de-chamada-publica-n-1/2024-539680709', 'extrato-de-contrato-539680824', 'aviso-de-retificacao-539680224', 'extrato-de-contrato-539680852', 'extrato-de-termo-aditivo-539680459', 'aviso-de-penalidade-539683802', 'extrato-de-termo-aditivo-539683595', 'extrato-de-termo-aditivo-539683672', 'aviso-de-licitacao-pregao-eletronico-n-64/2023-539682944', 'extrato-de-contrato-n-367/2024-uasg-925136-539684061', 'extrato-de-rescisao-539683495', 'edital-n-2-de-de-24-de-janeiro-de-2024-539686028', 'edital-539685479', 'extrato-de-dispensa-de-licitacao-n-90001/2024-uasg-153038-539686182', 'extrato-de-termo-aditivo-539685714', 'resultado-de-julgamento...', ...]
+web_1            | [26/Jan/2024 20:57:27] "GET /trigger_web_scraping_dou_api/?detailDOUJournalFlag=True&saveInDBFlag=True HTTP/1.1" 302 0
+web_1            | /usr/local/lib/python3.11/dist-packages/rest_framework/pagination.py:200: UnorderedObjectListWarning: Pagination may yield inconsistent results with an unordered object_list: <class 'polls.models.DetailSingleJournalOfDOU'> QuerySet.
+web_1            |   paginator = self.django_paginator_class(queryset, page_size)
+db_1             | 2024-01-26 23:57:27.121 UTC [38] ERROR:  relation "polls_detailsinglejournalofdou" does not exist at character 35
+db_1             | 2024-01-26 23:57:27.121 UTC [38] STATEMENT:  SELECT COUNT(*) AS "__count" FROM "polls_detailsinglejournalofdou"
+db_1             | 2024-01-26 23:57:27.170 UTC [38] ERROR:  relation "polls_detailsinglejournalofdou" does not exist at character 489
+db_1             | 2024-01-26 23:57:27.170 UTC [38] STATEMENT:  SELECT "polls_detailsinglejournalofdou"."id", "polls_detailsinglejournalofdou"."versao_certificada", "polls_detailsinglejournalofdou"."publicado_dou_data", "polls_detailsinglejournalofdou"."edicao_dou_data", "polls_detailsinglejournalofdou"."secao_dou_data", "polls_detailsinglejournalofdou"."orgao_dou_data", "polls_detailsinglejournalofdou"."title", "polls_detailsinglejournalofdou"."paragrafos", "polls_detailsinglejournalofdou"."assina", "polls_detailsinglejournalofdou"."cargo" FROM "polls_detailsinglejournalofdou" LIMIT 21
+db_1             | 2024-01-26 23:57:27.173 UTC [38] ERROR:  relation "polls_detailsinglejournalofdou" does not exist at character 489
+db_1             | 2024-01-26 23:57:27.173 UTC [38] STATEMENT:  SELECT "polls_detailsinglejournalofdou"."id", "polls_detailsinglejournalofdou"."versao_certificada", "polls_detailsinglejournalofdou"."publicado_dou_data", "polls_detailsinglejournalofdou"."edicao_dou_data", "polls_detailsinglejournalofdou"."secao_dou_data", "polls_detailsinglejournalofdou"."orgao_dou_data", "polls_detailsinglejournalofdou"."title", "polls_detailsinglejournalofdou"."paragrafos", "polls_detailsinglejournalofdou"."assina", "polls_detailsinglejournalofdou"."cargo" FROM "polls_detailsinglejournalofdou" LIMIT 21
+db_1             | 2024-01-26 23:57:27.175 UTC [38] ERROR:  relation "polls_detailsinglejournalofdou" does not exist at character 489
+db_1             | 2024-01-26 23:57:27.175 UTC [38] STATEMENT:  SELECT "polls_detailsinglejournalofdou"."id", "polls_detailsinglejournalofdou"."versao_certificada", "polls_detailsinglejournalofdou"."publicado_dou_data", "polls_detailsinglejournalofdou"."edicao_dou_data", "polls_detailsinglejournalofdou"."secao_dou_data", "polls_detailsinglejournalofdou"."orgao_dou_data", "polls_detailsinglejournalofdou"."title", "polls_detailsinglejournalofdou"."paragrafos", "polls_detailsinglejournalofdou"."assina", "polls_detailsinglejournalofdou"."cargo" FROM "polls_detailsinglejournalofdou" LIMIT 21
+db_1             | 2024-01-26 23:57:27.177 UTC [38] ERROR:  relation "polls_detailsinglejournalofdou" does not exist at character 489
+db_1             | 2024-01-26 23:57:27.177 UTC [38] STATEMENT:  SELECT "polls_detailsinglejournalofdou"."id", "polls_detailsinglejournalofdou"."versao_certificada", "polls_detailsinglejournalofdou"."publicado_dou_data", "polls_detailsinglejournalofdou"."edicao_dou_data", "polls_detailsinglejournalofdou"."secao_dou_data", "polls_detailsinglejournalofdou"."orgao_dou_data", "polls_detailsinglejournalofdou"."title", "polls_detailsinglejournalofdou"."paragrafos", "polls_detailsinglejournalofdou"."assina", "polls_detailsinglejournalofdou"."cargo" FROM "polls_detailsinglejournalofdou" LIMIT 21
+db_1             | 2024-01-26 23:57:27.179 UTC [38] ERROR:  relation "polls_detailsinglejournalofdou" does not exist at character 489
+db_1             | 2024-01-26 23:57:27.179 UTC [38] STATEMENT:  SELECT "polls_detailsinglejournalofdou"."id", "polls_detailsinglejournalofdou"."versao_certificada", "polls_detailsinglejournalofdou"."publicado_dou_data", "polls_detailsinglejournalofdou"."edicao_dou_data", "polls_detailsinglejournalofdou"."secao_dou_data", "polls_detailsinglejournalofdou"."orgao_dou_data", "polls_detailsinglejournalofdou"."title", "polls_detailsinglejournalofdou"."paragrafos", "polls_detailsinglejournalofdou"."assina", "polls_detailsinglejournalofdou"."cargo" FROM "polls_detailsinglejournalofdou" LIMIT 21
+web_1            | Internal Server Error: /db_dou_api/detailsinglejournalofdouviewset/
+web_1            | Traceback (most recent call last):
+web_1            |   File "/usr/local/lib/python3.11/dist-packages/django/db/backends/utils.py", line 89, in _execute
+web_1            |     return self.cursor.execute(sql, params)
+web_1            |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+web_1            | psycopg2.errors.UndefinedTable: relation "polls_detailsinglejournalofdou" does not exist
+web_1            | LINE 1: SELECT COUNT(*) AS "__count" FROM "polls_detailsinglejournal...
+web_1            |                                           ^
+web_1            | 
+web_1            | 
+web_1            | The above exception was the direct cause of the following exception:
+web_1            | 
+web_1            | Traceback (most recent call last):
+web_1            |   File "/usr/local/lib/python3.11/dist-packages/django/core/handlers/exception.py", line 55, in inner
+web_1            |     response = get_response(request)
+web_1            |                ^^^^^^^^^^^^^^^^^^^^^
+web_1            |   File "/usr/local/lib/python3.11/dist-packages/django/core/handlers/base.py", line 197, in _get_response
+web_1            |     response = wrapped_callback(request, *callback_args, **callback_kwargs)
+web_1            |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+web_1            |   File "/usr/local/lib/python3.11/dist-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+web_1            |     return view_func(*args, **kwargs)
+web_1            |            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+web_1            |   File "/usr/local/lib/python3.11/dist-packages/rest_framework/viewsets.py", line 125, in view
+web_1            |     return self.dispatch(request, *args, **kwargs)
+web_1            |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+web_1            |   File "/usr/local/lib/python3.11/dist-packages/rest_framework/views.py", line 509, in dispatch
+web_1            |     response = self.handle_exception(exc)
+web_1            |                ^^^^^^^^^^^^^^^^^^^^^^^^^^
+web_1            |   File "/usr/local/lib/python3.11/dist-packages/rest_framework/views.py", line 469, in handle_exception
+web_1            |     self.raise_uncaught_exception(exc)
+web_1            |   File "/usr/local/lib/python3.11/dist-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+web_1            |     raise exc
+web_1            |   File "/usr/local/lib/python3.11/dist-packages/rest_framework/views.py", line 506, in dispatch
+web_1            |     response = handler(request, *args, **kwargs)
+web_1            |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+web_1            |   File "/usr/local/lib/python3.11/dist-packages/rest_framework/mixins.py", line 40, in list
+web_1            |     page = self.paginate_queryset(queryset)
+web_1            |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+web_1            |   File "/usr/local/lib/python3.11/dist-packages/rest_framework/generics.py", line 171, in paginate_queryset
+web_1            |     return self.paginator.paginate_queryset(queryset, self.request, view=self)
+web_1            |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+web_1            |   File "/usr/local/lib/python3.11/dist-packages/rest_framework/pagination.py", line 204, in paginate_queryset
+web_1            |     self.page = paginator.page(page_number)
+web_1            |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+web_1            |   File "/usr/local/lib/python3.11/dist-packages/django/core/paginator.py", line 72, in page
+web_1            |     number = self.validate_number(number)
+web_1            |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+web_1            |   File "/usr/local/lib/python3.11/dist-packages/django/core/paginator.py", line 53, in validate_number
+web_1            |     if number > self.num_pages:
+web_1            |                 ^^^^^^^^^^^^^^
+web_1            |   File "/usr/local/lib/python3.11/dist-packages/django/utils/functional.py", line 57, in __get__
+web_1            |     res = instance.__dict__[self.name] = self.func(instance)
+web_1            |                                          ^^^^^^^^^^^^^^^^^^^
+web_1            |   File "/usr/local/lib/python3.11/dist-packages/django/core/paginator.py", line 99, in num_pages
+web_1            |     if self.count == 0 and not self.allow_empty_first_page:
+web_1            |        ^^^^^^^^^^
+web_1            |   File "/usr/local/lib/python3.11/dist-packages/django/utils/functional.py", line 57, in __get__
+web_1            |     res = instance.__dict__[self.name] = self.func(instance)
+web_1            |                                          ^^^^^^^^^^^^^^^^^^^
+web_1            |   File "/usr/local/lib/python3.11/dist-packages/django/core/paginator.py", line 93, in count
+web_1            |     return c()
+web_1            |            ^^^
+web_1            |   File "/usr/local/lib/python3.11/dist-packages/django/db/models/query.py", line 608, in count
+web_1            |     return self.query.get_count(using=self.db)
+web_1            |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+web_1            |   File "/usr/local/lib/python3.11/dist-packages/django/db/models/sql/query.py", line 568, in get_count
+web_1            |     return obj.get_aggregation(using, {"__count": Count("*")})["__count"]
+web_1            |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+web_1            |   File "/usr/local/lib/python3.11/dist-packages/django/db/models/sql/query.py", line 554, in get_aggregation
+web_1            |     result = compiler.execute_sql(SINGLE)
+web_1            |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+web_1            |   File "/usr/local/lib/python3.11/dist-packages/django/db/models/sql/compiler.py", line 1562, in execute_sql
+web_1            |     cursor.execute(sql, params)
+web_1            |   File "/usr/local/lib/python3.11/dist-packages/debug_toolbar/panels/sql/tracking.py", line 252, in execute
+web_1            |     return self._record(super().execute, sql, params)
+web_1            |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+web_1            |   File "/usr/local/lib/python3.11/dist-packages/debug_toolbar/panels/sql/tracking.py", line 177, in _record
+web_1            |     return method(sql, params)
+web_1            |            ^^^^^^^^^^^^^^^^^^^
+web_1            |   File "/usr/local/lib/python3.11/dist-packages/django/db/backends/utils.py", line 102, in execute
+web_1            |     return super().execute(sql, params)
+web_1            |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+web_1            |   File "/usr/local/lib/python3.11/dist-packages/django/db/backends/utils.py", line 67, in execute
+web_1            |     return self._execute_with_wrappers(
+web_1            |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+web_1            |   File "/usr/local/lib/python3.11/dist-packages/django/db/backends/utils.py", line 80, in _execute_with_wrappers
+web_1            |     return executor(sql, params, many, context)
+web_1            |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+web_1            |   File "/usr/local/lib/python3.11/dist-packages/django/db/backends/utils.py", line 84, in _execute
+web_1            |     with self.db.wrap_database_errors:
+web_1            |   File "/usr/local/lib/python3.11/dist-packages/django/db/utils.py", line 91, in __exit__
+web_1            |     raise dj_exc_value.with_traceback(traceback) from exc_value
+web_1            |   File "/usr/local/lib/python3.11/dist-packages/django/db/backends/utils.py", line 89, in _execute
+web_1            |     return self.cursor.execute(sql, params)
+web_1            |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+web_1            | django.db.utils.ProgrammingError: relation "polls_detailsinglejournalofdou" does not exist
+web_1            | LINE 1: SELECT COUNT(*) AS "__count" FROM "polls_detailsinglejournal...
+
+
+
+- Modifica start.sh: Erro de migrations (Banco não está refletindo nos models da aplicação)
+
+python3 manage.py makemigrations --noinput
+python3 manage.py migrate --noinput
+python3 manage.py runserver 0.0.0.0:8000
+
+
+$ docker-compose build
+$ docker-compose up
+
+
+- GET http://127.0.0.1:8010/trigger_web_scraping_dou_api/?detailDOUJournalFlag=True&saveInDBFlag=True
+
+
+celery_worker_1  | [2024-01-26 21:04:38,881: INFO/ForkPoolWorker-2] Task django_celery_example.celery.run_scraper_with_all_params_task[1c8c127d-d6d9-4b89-8bba-fb520b2591e4] succeeded in 0.4772442410030635s: ['deliberacao-n-1.661-de-25-de-janeiro-de-2024-539826117', 'despacho-n-664/2023-539825237', 'despacho-de-24-de-janeiro-de-2024-539825156', 'despacho-sso-anp-n-96-de-25-de-janeiro-de-2024-539825746', 'portaria-sefic/minc-n-76-de-25-de-janeiro-de-2024-539825479', 'retificacao-539826198', 'resolucao-n-2-de-24-de-janeiro-de-2024-539826307', 'ato-n-515-de-22-de-janeiro-de-2024-539826226', 'portaria-n-268-de-25-de-janeiro-de-2024-539838266', 'resolucao-cefic-n-16-de-22-de-janeiro-de-2024-539842148', 'despacho-n-33/2024-539841145', 'despacho-n-4.652-de-29-de-novembro-de-2023-539841653', 'portaria-n-1.239-de-19-de-janeiro-de-2024-539841217', 'resolucao-autorizativa-n-15.074-de-23-de-janeiro-de-2024-539841811', 'portaria-sesai/ms-n-10-de-24-de-janeiro-de-2024-539841416', 'portaria-gpr-n-172-de-23-de-janeiro-de-2024-539845176', 'atos-de-24-de-janeiro-de-2024-539845599', 'despacho-n-124-de-23-de-janeiro-de-2024-539845497', 'resolucao-autorizativa-n-15.028-de-23-de-janeiro-de-2024-539845519', 'atos-declaratorios-cvm-de-25...', ...]
+celery_worker_1  | [2024-01-26 21:04:40,652: INFO/ForkPoolWorker-4] Task django_celery_example.celery.run_scraper_with_all_params_task[aef1596c-a9b9-4568-9ac0-a4bf58f46b75] succeeded in 2.249124631001905s: ['portarias-de-25-de-janeiro-de-2024-539627076', 'ato-pr-n-61-de-23-de-janeiro-de-2024-539626740', 'despacho-539627530', 'portaria-de-pessoal-srrf07-n-52-de-23-de-janeiro-de-2024-539628525', 'despacho-539628688', 'portaria-ufcat-n-35-de-23-de-janeiro-de-2024-539629157', 'portaria-n-711-de-23-de-janeiro-de-2024-539628869', 'portaria-n-53-de-25-de-janeiro-de-2024-539633309', 'portaria-n-75-rtr/ufms-de-25-de-janeiro-de-2024-539633834', 'portaria-de-pessoal-memp-n-17-de-24-de-janeiro-de-2024-539633704', 'portaria-midr-n-384-de-25-de-janeiro-de-2024-539631563', 'portaria-de-pessoal-cggp/funai-n-20-de-24-de-janeiro-de-2024-539633467', 'despacho-de-24-de-janeiro-de-2024-539632011', 'portaria-c-ex-n-56-de-24-de-janeiro-de-2024-539636238', 'portaria-n-30/gr/unir-de-18-de-janeiro-de-2024-539637340', 'portaria-stj/gp-n-43-de-25-de-janeiro-de-2024-539638495', 'portaria-dgp/prf-n-154-de-23-de-janeiro-de-2024-539640338', 'portaria-de-pessoal-n-110-de-24-de-janeiro-de-2024-539641416', 'portaria-emcfa-md-n-478-de-25-de-janeir...', ...]
+web_1            | DETAILS OBJECT SENDO INSERIDO NO BANCO....
+celery_worker_1  | [2024-01-26 21:04:41,792: INFO/ForkPoolWorker-3] Task django_celery_example.celery.run_scraper_with_all_params_task[bd6bf23f-dda9-4c85-82ec-9548eacd946f] succeeded in 3.369622686004732s: ['aviso-de-licitacao-539673227', 'aviso-de-chamada-publica-n-1/2024-539673528', 'aviso-de-licitacao-539674126', 'aviso-de-licitacao-pregao-eletronico-n-5/2024-539672668', 'avisotomada-de-precos-n-2/2023-539672510', 'extrato-de-registro-de-precos-539672745', 'extrato-de-contrato-539673677', 'aviso-de-dispensa-de-licitacao-n-2/2024-539678083', 'extrato-de-contrato-539678723', 'aviso-de-chamada-publica-n-1/2024-539680709', 'extrato-de-contrato-539680824', 'aviso-de-retificacao-539680224', 'extrato-de-contrato-539680852', 'extrato-de-termo-aditivo-539680459', 'aviso-de-penalidade-539683802', 'extrato-de-termo-aditivo-539683595', 'extrato-de-termo-aditivo-539683672', 'aviso-de-licitacao-pregao-eletronico-n-64/2023-539682944', 'extrato-de-contrato-n-367/2024-uasg-925136-539684061', 'extrato-de-rescisao-539683495', 'edital-n-2-de-de-24-de-janeiro-de-2024-539686028', 'edital-539685479', 'extrato-de-dispensa-de-licitacao-n-90001/2024-uasg-153038-539686182', 'extrato-de-termo-aditivo-539685714', 'resultado-de-julgamento...', ...]
+web_1            | [26/Jan/2024 21:04:41] "GET /trigger_web_scraping_dou_api/?detailDOUJournalFlag=True&saveInDBFlag=True HTTP/1.1" 302 0
+web_1            | /usr/local/lib/python3.11/dist-packages/rest_framework/pagination.py:200: UnorderedObjectListWarning: Pagination may yield inconsistent results with an unordered object_list: <class 'polls.models.DetailSingleJournalOfDOU'> QuerySet.
+
+
+
+
+
 

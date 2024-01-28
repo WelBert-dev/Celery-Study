@@ -20,11 +20,20 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 
+from polls.views import JournalJsonArrayOfDOUViewSet, DetailSingleJournalOfDOUViewSet
+
 from polls.views import ScraperViewSet
+
+from rest_framework import routers
+
+router = routers.DefaultRouter()
+router.register(r'journaljsonarrayofdouviewset', JournalJsonArrayOfDOUViewSet)
+router.register(r'detailsinglejournalofdouviewset', DetailSingleJournalOfDOUViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('trigger_web_scraping_dou_api/', ScraperViewSet.as_view(), name='scraperviewset'),
+    path('db_dou_api/', include(router.urls)),
 ]
 
 # Para poder ver os arquivos de media em time real quando o cliente enviar post
